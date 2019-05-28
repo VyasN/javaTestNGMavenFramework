@@ -32,7 +32,7 @@ public class BaseTest{
 	public static String resultPath = Paths.get(System.getProperty("user.dir"), "results").toString();
 	
 	// If you are using vm please pass ip of vm instead localhost
-	public String url = System.getenv("URL") != null ? System.getenv("URL") : "http://localhost:3000";
+	public String url = System.getenv("URL") != null ? System.getenv("URL") : "https://accounts.google.com/ServiceLogin";
 	public WebDriver driver;
 	public WebDriverWait wait;
 	public Credential credential;

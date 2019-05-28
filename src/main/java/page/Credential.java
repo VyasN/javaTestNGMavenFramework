@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Credential extends BasePage {
-	private final static String SUPERADMIN_EMAIL = "";
+	private final static String EMAIL = "username";
 	private final static String PASSWORD = "password";
 
 	public Credential(WebDriver driver, WebDriverWait wait) {
@@ -19,13 +19,19 @@ public class Credential extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(id = "user_email")
-	public WebElement txtUsername;
-	@FindBy(id = "user_password")
+	// txt prefix is indicating text box tag
+	@FindBy(id = "identifierId")
+	public WebElement txtEmail;
+	@FindBy(xpath = "//input[@type='password']")
 	public WebElement txtPassword;
-	@FindBy(name = "commit")
-	public WebElement btnLogin;
-	@FindBy(linkText = "Logout")
+	// btn is indicating Button tag
+	@FindBy(xpath = "//span[.='Next' and contains(@class,'snByac')]")
+	public WebElement btnNext;
+	// lbl prefix is for label or logo tag
+	@FindBy(css = ".gb_xa.gbii")
+	public WebElement lblNameIcon;
+	// lnk prefix is for link tag
+	@FindBy(linkText = "Sign out")
 	public WebElement lnkLogout;
 
 	/**
@@ -35,16 +41,34 @@ public class Credential extends BasePage {
 	 * @param password
 	 */
 	public void loginAs(String username, String password) {
-		txtUsername.sendKeys(username);
+		// clear text box before entering text to avoid errors
+		txtEmail.clear();
+		txtEmail.sendKeys(username);
+		btnNext.click();
+		txtPassword.clear();
 		txtPassword.sendKeys(password);
-		btnLogin.click();
+		lnkLogout.click();
+	}
+	/**
+	 * Method to use to logout as any Users
+	 */
+	public void logOutGmail() {
+		waitTillElementIsClickable(lblNameIcon);
+		lblNameIcon.click();
+		try {
+			waitTillelementIsDisplayedOrEnabled(lnkLogout);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		lnkLogout.click();
 	}
 
 	/**
 	 * login Login as SuperAdmin
 	 */
-	public void loginAsSuperadmin() {
-		loginAs(SUPERADMIN_EMAIL, PASSWORD);
+	public void logInGmail() {
+		loginAs(EMAIL, PASSWORD);
 	}
 
 }

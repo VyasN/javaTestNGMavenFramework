@@ -4,12 +4,10 @@
 
 package page;
 
-import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -20,22 +18,12 @@ public class BasePage {
 	public Actions mouseHover;
 	public WebDriverWait wait;
 
-	@FindBy(css = "p.alert.alert-info")
-	public WebElement alertInfo;
-	@FindBy(css = "p.alert.alert-danger")
-	public WebElement alertDanger;
-	@FindBy(id = "flash_notice")
-	public WebElement flashNotice;
-
 	public BasePage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;
 		this.mouseHover = new Actions(driver);
 		PageFactory.initElements(driver, this);
 	}
-
-	@FindBy(xpath = "//button[.='Filter']")
-	public WebElement btnFilter;
 
 	/**
 	 * Select options from drop down by visible text
@@ -118,18 +106,4 @@ public class BasePage {
 		ele = driver.findElement(By.xpath(query));
 		return ele;
 	}
-
-	/**
-	 * Find elements by link text present on UI
-	 * 
-	 * @param lnkTxt
-	 * @return elements
-	 */
-	public List<WebElement> getElesOfLinkText(String lnkTxt) {
-		String query = "//a[contains(text(),'" + lnkTxt + "')]";
-		List<WebElement> ele;
-		ele = driver.findElements(By.xpath(query));
-		return ele;
-	}
-
 }
