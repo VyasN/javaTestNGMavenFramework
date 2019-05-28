@@ -7,7 +7,7 @@ import utils.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 
-public class DemoGmailTest extends BaseTest {
+public class DemoGmail extends BaseTest {
 
 // before class and after class will tear up and down browser
 // which is already implemented in BaseTest.class
