@@ -13,12 +13,12 @@ public class DemoGmail extends BaseTest {
 // which is already implemented in BaseTest.class
 	@Test
 	public void checkEmails() {
-		// check you have new email or not
-		// delete email which is older than 30 days
-		// right test which ever you want
-		// but it is good idea to write all methods
+		// Check you have new email or not
+		// Delete email which is older than 30 days
+		// Wright test which ever you want
+		// As per the best practises to write all methods
 		// Inherit all elements from element and method classes
-		// which chould be separatly created under page package as separate class
+		// Which chould be separatly created under page package as separate class
 	}
 
 	@BeforeMethod
